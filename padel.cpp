@@ -10,7 +10,7 @@ using namespace std;
 int main() {
     // uncomment the two following lines if you want to read/write from files
     ifstream cin("input.txt");
-    // ofstream cout("output.txt");
+    ofstream cout("output.txt");
 
     int T;
     cin >> T;
@@ -25,7 +25,7 @@ int main() {
         int K = 0;
         int K1 = 0;
         
-	    for (int i = 0; i < N; ++i) // per ogni round fa le verifiche. il ciclo intero è una partita
+	    for (int i = 0; i < N; ++i) // per ogni round fa le verifiche. il ciclo intero Ã¨ una partita
 		{
 			// prende in input un round
             cin >> W[i];
@@ -52,22 +52,14 @@ int main() {
 		}
 		
 		K1 = K;
-		K = 0;
 		
-		for (int j = 0; j < N; ++j) // ripete tot partite per ogni N caratteri dentro W 
+		for (int j = 1; j < N; ++j) // ripete tot partite per ogni possibile warmup
 		{
-			//cout << j << endl;
-			W.erase(W.begin(), W.begin() + 1);
-			/*cout << "---------" << endl;
-			for(int num : W){
-				cout << num << endl; 
-			}
-			cout << "---------" << endl; 
-			*/
-			
 			K = 0;
+			p1 = 0;
+			p2 = 0;
 			
-			for (int i = 0; i < N; ++i) // per ogni round fa le verifiche. il ciclo intero è una partita
+			for (int i = j; i < N; ++i) // per ogni round fa le verifiche partendo da j (saltando i primi j punti di warmup)
 			{
 	      
 	            // assegnamento punti del round
@@ -91,8 +83,6 @@ int main() {
 				
 		 	}
 			K1 = max(K1, K);
-			p1 = 0;
-			p2 = 0;
 		}
 		
         cout << K1 << endl;
